@@ -4,10 +4,30 @@ let removeDiacritics = require('diacritics').remove;
 
 let credentials = config.get('credentials');
 let urls = config.get('urls');
+let jsonfile = config.get('json');
 
-let ideas = [
-	{ id: 1, desc: "Obtenir une recette après l'expérience", cat: "Partage/Echange" },
-]
+
+
+// Create the array of ideas based on the json file passed as parameters
+
+//let ideas = [
+//	{ id: 1, desc: "Test idea from Node", cat: "Partage/Echange" },
+//]
+
+var ideas = [];
+
+console.log("Test reading a json file and creating array");
+console.log("using json file"+jsonfile);
+
+//process.exit()
+
+var fs = require('fs');
+var obj = JSON.parse(fs.readFileSync('data/'+jsonfile, 'utf8'));
+
+// readjson file and convery to array
+for (var i=0; i<obj.length; i++){
+    ideas[i] = { id: i, desc: obj[i].content, title: obj[i].title }
+}
 
 function login() {
     restler.get(urls.login_form)
@@ -54,7 +74,8 @@ function sendData(ideas, cookies, i) {
 		data: {
 			"challenge_id": "12",
 			"visibility": "visible",
-			"name": "#" + ideas[i].id + " - " + ideas[i].cat + " - " + ideas[i].desc,
+			//"name": "#" + ideas[i].id + " - " + ideas[i].title + " - " + ideas[i].desc,
+			"name": "#" + ideas[i].id + " - " + ideas[i].title,
 			"description": ideas[i].desc
 			// "name": "#" + ideas[i].id + " - " + removeDiacritics(ideas[i].cat) + " - " + removeDiacritics(ideas[i].desc),
 			// "description": removeDiacritics(ideas[i].desc)
