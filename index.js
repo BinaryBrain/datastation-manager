@@ -10,21 +10,8 @@ let ideas = [
 ]
 
 function login() {
-	restler.post(urls.login, {
-		multipart: true,
-		headers: {
-			// 'Cookie': 'PHPSESSID=42c0c3a3q6m6hjtmfm0ahlr4s2; language_id=1; resource_id=295fdc5' // FIXME change PHPSESSID accordingly
-		},
-		data: {
-			// "p1": credentials.email,
-            // "p2": credentials.password,
-			"p1": "sacha.bron@master.hes-so.ch",
-            "p2": "prerasonhe",
-            "remember_me": "on",
-            "continue": "1",
-            "go_url": ""
-		}
-	}).on("complete", function(result, response) {
+    restler.get(urls.login_form)
+    .on("complete", function(result, response) {
         let cookies = response.headers['set-cookie'].join('; ')
 
         // RegEx mode: slower
@@ -36,10 +23,24 @@ function login() {
         let secondIndex = result.indexOf(searchString, index + 1);
         let substring = result.slice(secondIndex, secondIndex + 50);
         let resource_id = substring.match(/\$\.cookie\('resource_id', '(.+)',/i)[1];
-        console.log(resource_id)
-        
-        sendData(ideas, cookies + '; resource_id=' + resource_id, 0);
-	});
+        console.log(resource_id);
+
+        restler.post(urls.login, {
+            multipart: true,
+            headers: {
+                'Cookie': cookies
+            },
+            data: {
+                "p1": credentials.email,
+                "p2": credentials.password,
+                "remember_me": "on",
+                "continue": "1",
+                "go_url": ""
+            }
+        }).on("complete", function(result, response) {
+            sendData(ideas, cookies + '; resource_id=' + resource_id, 0);
+        });
+    });
 }
 
 function sendData(ideas, cookies, i) {

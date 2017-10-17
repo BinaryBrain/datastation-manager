@@ -4,6 +4,7 @@
         "password": "password"
     },
     "urls": {
+        "login_form": "https://innokick.datastation.com/default/user/loginform",
         "login": "https://innokick.datastation.com/default/user/login",
         "add_idea": "https://innokick.datastation.com/default/challenges/ideaaddfinish",
         "delete_ideas": "https://innokick.datastation.com/default/challenges/ideadelete"
