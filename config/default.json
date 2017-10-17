@@ -1,0 +1,11 @@
+{
+    "credentials": {
+        "email": "prenom.nom@master.hes-so.ch",
+        "password": "password"
+    },
+    "urls": {
+        "login": "https://innokick.datastation.com/default/user/login",
+        "add_idea": "https://innokick.datastation.com/default/challenges/ideaaddfinish",
+        "delete_ideas": "https://innokick.datastation.com/default/challenges/ideadelete"
+    }
+}

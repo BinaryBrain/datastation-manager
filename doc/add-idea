@@ -1,0 +1,23 @@
+POST https://innokick.datastation.com/default/challenges/ideaaddfinish
+
+------WebKitFormBoundaryBqrzfhdaAwFufgwi
+Content-Disposition: form-data; name="challenge_id"
+
+12
+------WebKitFormBoundaryBqrzfhdaAwFufgwi
+Content-Disposition: form-data; name="visibility"
+
+visible
+------WebKitFormBoundaryBqrzfhdaAwFufgwi
+Content-Disposition: form-data; name="name"
+
+test
+------WebKitFormBoundaryBqrzfhdaAwFufgwi
+Content-Disposition: form-data; name="description"
+
+test
+------WebKitFormBoundaryBqrzfhdaAwFufgwi
+Content-Disposition: form-data; name="picture_upload[]"
+
+zoom.jpg
+------WebKitFormBoundaryBqrzfhdaAwFufgwi--

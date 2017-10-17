@@ -1,0 +1,12 @@
+POST https://innokick.datastation.com/u/general?prefix=ideaaddeditform
+
+------WebKitFormBoundarywxueBK0ZLZhDt9ct
+Content-Disposition: form-data; name="strUploadFileId"
+
+zoomjpg1508226087482
+------WebKitFormBoundarywxueBK0ZLZhDt9ct
+Content-Disposition: form-data; name="files[]"; filename="zoom.jpg"
+Content-Type: image/jpeg
+
+
+------WebKitFormBoundarywxueBK0ZLZhDt9ct--
