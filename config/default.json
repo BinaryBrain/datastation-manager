@@ -3,6 +3,7 @@
         "email": "laurent.balmelli@sanaelias.com",
         "password": "Test1234"
     },
+    "challenge_id": 12,
     "urls": {
         "login_form": "https://innokick.datastation.com/default/user/loginform",
         "login": "https://innokick.datastation.com/default/user/login",

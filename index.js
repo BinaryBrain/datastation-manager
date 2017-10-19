@@ -6,27 +6,19 @@ let credentials = config.get('credentials');
 let urls = config.get('urls');
 let jsonfile = config.get('json');
 
-
-
 // Create the array of ideas based on the json file passed as parameters
-
-//let ideas = [
-//	{ id: 1, desc: "Test idea from Node", cat: "Partage/Echange" },
-//]
-
-var ideas = [];
+let ideas = [];
 
 console.log("Test reading a json file and creating array");
-console.log("using json file"+jsonfile);
+console.log("using json file", jsonfile);
 
-//process.exit()
-
-var fs = require('fs');
-var obj = JSON.parse(fs.readFileSync('data/'+jsonfile, 'utf8'));
+let fs = require('fs');
+let obj = JSON.parse(fs.readFileSync('data/'+jsonfile, 'utf8'));
 
 // readjson file and convery to array
-for (var i=0; i<obj.length; i++){
-    ideas[i] = { id: i, desc: obj[i].content, title: obj[i].title }
+for (let i = 0; i < obj.length; i++) {
+    ideas[i] = { id: i, desc: obj[i].content, title: obj[i].title, date: new Date(obj[i].date) }
+    break;
 }
 
 function login() {
@@ -67,18 +59,14 @@ function sendData(ideas, cookies, i) {
 	console.log(i)
 	console.log(cookies)
 	restler.post(urls.add_idea, {
-		multipart: true,
 		headers: {
 			'Cookie': cookies
 		},
 		data: {
-			"challenge_id": "12",
+			"challenge_id": config.get('challenge_id'),
 			"visibility": "visible",
-			//"name": "#" + ideas[i].id + " - " + ideas[i].title + " - " + ideas[i].desc,
 			"name": "#" + ideas[i].id + " - " + ideas[i].title,
-			"description": ideas[i].desc
-			// "name": "#" + ideas[i].id + " - " + removeDiacritics(ideas[i].cat) + " - " + removeDiacritics(ideas[i].desc),
-			// "description": removeDiacritics(ideas[i].desc)
+			"description": ideas[i].desc + "\n\n" + "Ajouté le " + ideas[i].date.getDate() + "." + ideas[i].date.getMonth() + "." + ideas[i].date.getFullYear() + " à " + ideas[i].date.getHours() + "h" + ideas[i].date.getMinutes()
 		}
 	}).on("complete", function(data) {
 		if (i < ideas.length - 1) {
