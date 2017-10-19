@@ -55,8 +55,7 @@ function login() {
 }
 
 function sendData(ideas, cookies, i) {
-	console.log(i)
-	console.log(cookies)
+	console.log("Sending idea #" + i);
 	restler.post(urls.add_idea, {
 		headers: {
 			'Cookie': cookies
