@@ -18,7 +18,6 @@ let obj = JSON.parse(fs.readFileSync('data/'+jsonfile, 'utf8'));
 // readjson file and convery to array
 for (let i = 0; i < obj.length; i++) {
     ideas[i] = { id: i, desc: obj[i].content, title: obj[i].title, date: new Date(obj[i].date) }
-    break;
 }
 
 function login() {
